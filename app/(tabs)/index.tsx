@@ -4,6 +4,9 @@ import { HelloWave } from '@/components/HelloWave';
 import ParallaxScrollView from '@/components/ParallaxScrollView';
 import { ThemedText } from '@/components/ThemedText';
 import { ThemedView } from '@/components/ThemedView';
+import { useNavigation, Link } from 'expo-router';
+
+
 
 export default function HomeScreen() {
   const [loginUsername, setLoginUsername] = useState('');
@@ -71,9 +74,11 @@ export default function HomeScreen() {
             />
             
             <ThemedView style={styles.buttonConteiner}>
+            
             <TouchableOpacity style={styles.button} onPress={handleLoginSubmit}>
               <ThemedText style={styles.buttonText}>Iniciar Sesión</ThemedText>
             </TouchableOpacity>
+           
             </ThemedView>
           </View>
         )}
@@ -180,5 +185,3 @@ const styles = StyleSheet.create({
     borderRadius: 5    
   }
 });
-
-
