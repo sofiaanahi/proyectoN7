@@ -2,8 +2,8 @@ import { ScrollViewStyleReset } from 'expo-router/html';
 import { type PropsWithChildren } from 'react';
 
 /**
- * This file is web-only and used to configure the root HTML for every web page during static rendering.
- * The contents of this function only run in Node.js environments and do not have access to the DOM or browser APIs.
+ * Este archivo es solo web y se utiliza para configurar el HTML raíz de cada página web durante la representación estática.
+ * El contenido de esta función solo se ejecuta en entornos Node.js y no tiene acceso al DOM ni a las API del navegador.
  */
 export default function Root({ children }: PropsWithChildren) {
   return (
@@ -13,16 +13,16 @@ export default function Root({ children }: PropsWithChildren) {
         <meta httpEquiv="X-UA-Compatible" content="IE=edge" />
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
         {/*
-          Disable body scrolling on web. This makes ScrollView components work closer to how they do on native.
-          However, body scrolling is often nice to have for mobile web. If you want to enable it, remove this line.
-        */}
+          Desactivar el desplazamiento del cuerpo en la web. Esto hace que los componentes de ScrollView funcionen más parecido a como lo hacen en forma nativa.
+ Sin embargo, el desplazamiento corporal suele ser bueno para la web móvil. Si desea habilitarlo, elimine esta línea.        */}
         <ScrollViewStyleReset />
 
-        {/* Using raw CSS styles as an escape-hatch to ensure the background color never flickers in dark-mode. */}
+        {/** Uso de estilos CSS sin formato como trampilla de escape para garantizar que el color de fondo nunca parpadee en el modo oscuro.  */}
         <style dangerouslySetInnerHTML={{ __html: responsiveBackground }} />
-        {/* Add any additional <head> elements that you want globally available on web... */}
+        {/* Agregue cualquier elemento <head> adicional que desee que esté disponible globalmente en la web...*/}
+        
       </head>
-
+      
       <body>{children}</body>
     </html>
   );
@@ -30,7 +30,7 @@ export default function Root({ children }: PropsWithChildren) {
 
 const responsiveBackground = `
 body {
-  background-color: #fff;
+  background-color: #red;
 }
 @media (prefers-color-scheme: dark) {
   body {

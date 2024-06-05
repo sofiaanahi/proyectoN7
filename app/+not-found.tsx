@@ -1,3 +1,5 @@
+// este archivo maneja las paginas que no existen
+
 import { Link, Stack } from 'expo-router';
 import { StyleSheet } from 'react-native';
 
@@ -9,9 +11,9 @@ export default function NotFoundScreen() {
     <>
       <Stack.Screen options={{ title: 'Oops!' }} />
       <ThemedView style={styles.container}>
-        <ThemedText type="title">This screen doesn't exist.</ThemedText>
+        <ThemedText type="title">NO EXISTE LA PAGINA BRO.</ThemedText>
         <Link href="/" style={styles.link}>
-          <ThemedText type="link">Go to home screen!</ThemedText>
+          <ThemedText type="link">VOLVETE</ThemedText>
         </Link>
       </ThemedView>
     </>

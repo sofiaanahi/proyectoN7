@@ -1,11 +1,10 @@
-import { Image, StyleSheet, Platform } from 'react-native';
-
+import { Image, StyleSheet, Platform, View, Text, TextInput, TouchableOpacity  } from 'react-native'; 
+import React, { useState } from 'react';
 import { HelloWave } from '@/components/HelloWave';
 import ParallaxScrollView from '@/components/ParallaxScrollView';
 import { ThemedText } from '@/components/ThemedText';
 import { ThemedView } from '@/components/ThemedView';
-import { useState } from 'react';
-import { View, Text, TextInput, Button } from 'react-native';
+import { white } from 'react-native-paper/lib/typescript/styles/themes/v2/colors';
 
 
 export default function HomeScreen() {
@@ -14,32 +13,44 @@ export default function HomeScreen() {
   const [registerUsername, setRegisterUsername] = useState('');
   const [registerPassword, setRegisterPassword] = useState('');
 
+  const handleLogin = () => {
+    // Implementa la lógica de inicio de sesión aquí
+    // Aquí puedes realizar las validaciones necesarias, como verificar si el usuario y la contraseña son válidos
+    // Puedes utilizar librerías de autenticación como Firebase o implementar tu propia lógica de autenticación
+    // Una vez que hayas validado los datos, puedes realizar las acciones necesarias, como redirigir al usuario a otra pantalla
+
+  }
+
+  const handleRegister = () => {
+    // Implementa la lógica de registro aquí
+    // Aquí puedes realizar las validaciones necesarias, como verificar si el nombre de usuario ya está en uso
+    // Puedes utilizar librerías de autenticación como Firebase o implementar tu propia lógica de registro
+    // Una vez que hayas validado los datos, puedes realizar las acciones necesarias, como redirigir al usuario a otra pantalla
+  }
 
   return (
     <ParallaxScrollView
-      headerBackgroundColor={{ light: '#A1CEDC', dark: '#1D3D47' }}
+      headerBackgroundColor={{ light: '#80B315', dark: '#1D3D47' }}
       headerImage={
         <Image
-          source={require('@/assets/images/luffy.jpg')}
+          source={require('@/assets/images/vector.jpg')}
           style={styles.reactLogo}
         />
       }>
       <ThemedView style={styles.titleContainer}>
-        <ThemedText type="title"> Bienvenido! </ThemedText>
-        <HelloWave />
-      </ThemedView>
-      <ThemedView style={styles.stepContainer}>
-        <ThemedText type="subtitle"> Nombre de Usuario </ThemedText>
-        <input type="text" placeholder='Usuario' value={loginUsername} onChange={(e) => setLoginUsername(e.target.value)}/>
-      </ThemedView>
-      {/* <ThemedView style={styles.stepContainer}>
-        <ThemedText type="subtitle"> Contraseña </ThemedText>
-     */}
-      {/* </ThemedView> */}
-      {/* <ThemedView style={styles.titleContainer}>
-        <ThemedText type="title"> Registrarse </ThemedText>
-       
-      </ThemedView> */}
+        <ThemedText type="title"> MundoTarea </ThemedText>
+        <ThemedText style={styles.text}> Organiza tu vida academica </ThemedText>
+        <HelloWave/>
+      </ThemedView >
+
+      <ThemedView style={styles.buttonConteiner}>
+        <TouchableOpacity style={styles.button} onPress={handleLogin}>
+          <ThemedText style={styles.buttonText}>Iniciar Sesión</ThemedText>
+        </TouchableOpacity>
+        <TouchableOpacity style={styles.button} onPress={handleRegister}>
+          <ThemedText style={styles.buttonText}> Registrarse </ThemedText>
+        </TouchableOpacity>
+      </ThemedView >
     </ParallaxScrollView>
   );
 }
@@ -47,22 +58,43 @@ export default function HomeScreen() {
 const styles = StyleSheet.create({
   titleContainer: {
     alignItems: 'center',
-    gap: 8,
-  },
-  stepContainer: {
-    gap: 8,
-    marginBottom: 6,
-    alignSelf: 'center',
+    justifyContent: 'center',
+    gap: 3
   },
   reactLogo: {
-    height: 178,
-    width: 290,
+    height: 180,
+    width: 360,
     bottom: 0,
     left: 0,
     alignContent: 'center',
-    top: 75,
+    top: 22,
     alignSelf: 'center',
-    borderRadius: 15,
-
+    borderRadius: 7,
   },
+  buttonConteiner: {
+    width: '100%',
+    flexDirection: 'column',
+    justifyContent: 'center',
+    paddingHorizontal: 30,
+    gap: 20,
+    marginTop: 12,
+  },
+  button: {
+    backgroundColor: '#80B315', // Cambia el color de fondo del botón aquí
+    padding: 10,
+    borderRadius: 5,
+    alignItems: 'center',
+  },
+  buttonText: {
+    color: 'white', // Cambia el color del texto del botón aquí
+    fontSize: 25
+  },
+  text: {
+    color:'#80B315',
+    fontSize: 20,
+    fontWeight: 'bold',
+    
+  }
 });
+
+

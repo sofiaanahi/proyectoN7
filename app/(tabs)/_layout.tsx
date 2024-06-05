@@ -1,7 +1,6 @@
 import { Tabs } from 'expo-router';
 import React from 'react';
 
-import { TabBarIcon } from '@/components/navigation/TabBarIcon';
 import { Colors } from '@/constants/Colors';
 import { useColorScheme } from '@/hooks/useColorScheme';
 
@@ -12,18 +11,19 @@ export default function TabLayout() {
     <Tabs
       screenOptions={{
         tabBarActiveTintColor: Colors[colorScheme ?? 'light'].tint,
-        headerShown: false,
+        headerShown: true,
       }}>
       <Tabs.Screen
         name="index"
         options={{
-          title: 'Bienvenido',
+          title: 'MundoTarea ',
         }}
       />
+      
       <Tabs.Screen
         name="explore"
         options={{
-          title: 'Explorar',
+          title: 'Tareas',
         }}
       />
     </Tabs>
