@@ -4,29 +4,37 @@ import { HelloWave } from '@/components/HelloWave';
 import ParallaxScrollView from '@/components/ParallaxScrollView';
 import { ThemedText } from '@/components/ThemedText';
 import { ThemedView } from '@/components/ThemedView';
-import { white } from 'react-native-paper/lib/typescript/styles/themes/v2/colors';
-
 
 export default function HomeScreen() {
   const [loginUsername, setLoginUsername] = useState('');
   const [loginPassword, setLoginPassword] = useState('');
   const [registerUsername, setRegisterUsername] = useState('');
   const [registerPassword, setRegisterPassword] = useState('');
+  const [registerEmail, setRegisterEmail] = useState('');
+  const [showLoginFields, setShowLoginFields] = useState(false);
+  const [showRegisterFields, setShowRegisterFields] = useState(false);
+
+
 
   const handleLogin = () => {
-    // Implementa la lógica de inicio de sesión aquí
-    // Aquí puedes realizar las validaciones necesarias, como verificar si el usuario y la contraseña son válidos
-    // Puedes utilizar librerías de autenticación como Firebase o implementar tu propia lógica de autenticación
-    // Una vez que hayas validado los datos, puedes realizar las acciones necesarias, como redirigir al usuario a otra pantalla
-
+    setShowLoginFields(true);
+    setShowRegisterFields(false);
   }
 
   const handleRegister = () => {
-    // Implementa la lógica de registro aquí
-    // Aquí puedes realizar las validaciones necesarias, como verificar si el nombre de usuario ya está en uso
-    // Puedes utilizar librerías de autenticación como Firebase o implementar tu propia lógica de registro
-    // Una vez que hayas validado los datos, puedes realizar las acciones necesarias, como redirigir al usuario a otra pantalla
+    setShowLoginFields(false);
+    setShowRegisterFields(true);
   }
+
+  const handleLoginSubmit = () => {
+    console.log('validacion inicio', loginUsername, loginPassword);
+  }
+
+  const handleRegisterSubmit = () => {
+    console.log('validacion registro', registerEmail, registerPassword, registerUsername);
+  }
+
+
 
   return (
     <ParallaxScrollView
@@ -43,23 +51,86 @@ export default function HomeScreen() {
         <HelloWave/>
       </ThemedView >
 
-      <ThemedView style={styles.buttonConteiner}>
-        <TouchableOpacity style={styles.button} onPress={handleLogin}>
-          <ThemedText style={styles.buttonText}>Iniciar Sesión</ThemedText>
-        </TouchableOpacity>
-        <TouchableOpacity style={styles.button} onPress={handleRegister}>
-          <ThemedText style={styles.buttonText}> Registrarse </ThemedText>
-        </TouchableOpacity>
+      <ThemedView >
+
+        {showLoginFields && (
+          <View style= {styles.inputContainer}>
+            <TextInput
+            placeholder='Nombre de usuario'
+            value={loginUsername}
+            onChangeText={text => setLoginUsername(text)}
+            style={styles.input} 
+            />
+
+            <TextInput
+            placeholder='Contraseña'
+            value={loginPassword}
+            onChangeText={text => setLoginPassword(text)}
+            secureTextEntry={true}
+            style={styles.input}           
+            />
+            
+            <ThemedView style={styles.buttonConteiner}>
+            <TouchableOpacity style={styles.button} onPress={handleLoginSubmit}>
+              <ThemedText style={styles.buttonText}>Iniciar Sesión</ThemedText>
+            </TouchableOpacity>
+            </ThemedView>
+          </View>
+        )}
+
+
+        {showRegisterFields && (
+            <View style={styles.inputContainer}>
+              <TextInput
+              placeholder='Correo Electronico'
+              value={registerEmail}
+              onChangeText={text => setRegisterEmail(text)}
+              style={styles.input}
+              />
+              <TextInput
+              placeholder='Nombre de Usuario'
+              value={registerUsername}
+              onChangeText={Text => setRegisterUsername(Text)}
+              style={styles.input}
+              />
+              <TextInput
+              placeholder='Contraseña'
+              value={registerPassword}
+              onChangeText={text => setRegisterPassword(text)}
+              secureTextEntry={true}
+              style={styles.input}
+              />
+              <ThemedView style={styles.buttonConteiner}>
+              <TouchableOpacity style={styles.button} onPress={handleRegisterSubmit}>
+                <ThemedText style={styles.buttonText}> Registrarse </ThemedText>
+              </TouchableOpacity>
+              </ThemedView>
+            </View>
+        )}
+
+        {!showLoginFields && ! showRegisterFields && (
+          <ThemedView style={styles.buttonConteiner}>
+            <TouchableOpacity style={styles.button} onPress={handleLogin}>
+              <ThemedText style={styles.buttonText}>Inicia Sesión</ThemedText>
+            </TouchableOpacity>
+            <TouchableOpacity style={styles.button} onPress={handleRegister}>
+              <ThemedText style={styles.buttonText}>Registrarse</ThemedText>
+            </TouchableOpacity>
+          </ThemedView>
+        )}       
       </ThemedView >
     </ParallaxScrollView>
   );
 }
 
+
+
+
 const styles = StyleSheet.create({
   titleContainer: {
     alignItems: 'center',
     justifyContent: 'center',
-    gap: 3
+    marginTop: 5,
   },
   reactLogo: {
     height: 180,
@@ -70,6 +141,7 @@ const styles = StyleSheet.create({
     top: 22,
     alignSelf: 'center',
     borderRadius: 7,
+    
   },
   buttonConteiner: {
     width: '100%',
@@ -87,13 +159,25 @@ const styles = StyleSheet.create({
   },
   buttonText: {
     color: 'white', // Cambia el color del texto del botón aquí
-    fontSize: 25
+    fontSize: 25,
+    fontWeight: 'bold'
   },
   text: {
     color:'#80B315',
     fontSize: 20,
     fontWeight: 'bold',
     
+  },
+  inputContainer: {
+    marginTop: 20,
+    paddingHorizontal: 30
+  },
+  input:{
+    marginBottom: 10,
+    padding: 10,
+    borderColor: 'gray',
+    borderWidth: 1,
+    borderRadius: 5    
   }
 });
 
