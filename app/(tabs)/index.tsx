@@ -113,9 +113,6 @@ export default function HomeScreen() {
             <TouchableOpacity style={styles.button} onPress={handleLogin}>
               <ThemedText style={styles.buttonText}>Inicia Sesión</ThemedText>
             </TouchableOpacity>
-            <TouchableOpacity style={styles.button} onPress={handleRegister}>
-              <ThemedText style={styles.buttonText}>Registrarse</ThemedText>
-            </TouchableOpacity>
           </ThemedView>
         )}       
       </ThemedView >
